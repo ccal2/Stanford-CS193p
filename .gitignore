@@ -1,0 +1,18 @@
+### macOS ###
+.DS_Store
+
+### Xcode ###
+
+## Settings
+xcuserdata/
+
+## Build generated
+build/
+DerivedData/
+
+## Xcode Patch
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
