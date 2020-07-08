@@ -8,7 +8,7 @@
 
 import Foundation
 
-class EmojiMemoryGame {
+class EmojiMemoryGame: ObservableObject {
 
     // MARK: - Properties
 
@@ -20,7 +20,7 @@ class EmojiMemoryGame {
 
     // MARK: Model
 
-    private var model: MemoryGame<String>
+    @Published private var model: MemoryGame<String>
 
     // MARK: - Methods
 

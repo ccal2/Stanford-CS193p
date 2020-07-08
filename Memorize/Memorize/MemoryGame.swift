@@ -30,8 +30,20 @@ struct MemoryGame<CardContent> {
 
     // MARK: Card manipulation
 
-    func choose(card: Card) {
+    mutating func choose(card: Card) {
         print("card chosen: \(card)")
+        guard let chosenIndex = index(of: card) else { return }
+        cards[chosenIndex].isFaceUp = !cards[chosenIndex].isFaceUp
+    }
+
+    func index(of card: Card) -> Int? {
+        for index in 0 ..< cards.count {
+            if cards[index].id == card.id {
+                return index
+            }
+        }
+
+        return nil
     }
 
 }
@@ -44,7 +56,7 @@ extension MemoryGame {
 
         // MARK: Properties
 
-        var isFaceUp: Bool = true
+        var isFaceUp: Bool = false
         var isMathced: Bool = false
         var content: CardContent
 
