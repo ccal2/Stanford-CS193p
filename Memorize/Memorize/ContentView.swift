@@ -24,8 +24,9 @@ struct ContentView: View {
         }
             .padding()  // this is applied only for the stack
             .foregroundColor(.orange)  // all views inside it will have a .orange foregroundColor
-            .font(.largeTitle)  // this is applied to all texts inside the stack
+            .font((viewModel.cards.count == 10) ? .headline : .largeTitle)  // this is applied to all texts inside the stack
     }
+
 }
 
 // MARK: - CardView
@@ -49,7 +50,9 @@ struct CardView: View {
                     .fill()
             }
         }
+            .aspectRatio(2/3, contentMode: .fit)
     }
+
 }
 
 
