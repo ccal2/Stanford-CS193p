@@ -12,10 +12,11 @@ struct MemoryGame<CardContent: Hashable> {
 
     // MARK: - Properties
 
-    var cards: [Card]
-    var score: Int
+    private(set) var cards: [Card]
+    private(set) var score: Int
+    private(set) var dateOfLastCardChoosing: Date!
 
-    var indexOfTheOneAndOnlyFaceUpCard: Int? {
+    private var indexOfTheOneAndOnlyFaceUpCard: Int? {
         get {
             cards.indices.filter { index in cards[index].isFaceUp }.only
         }
@@ -41,6 +42,7 @@ struct MemoryGame<CardContent: Hashable> {
         }
         cards.shuffle()
         score = 0
+        dateOfLastCardChoosing = nil
     }
 
     // MARK: Card manipulation
@@ -50,20 +52,26 @@ struct MemoryGame<CardContent: Hashable> {
         guard let chosenIndex = cards.firstIndex(matching: card), !cards[chosenIndex].isFaceUp, !cards[chosenIndex].isMatched else { return }
 
         if let potentialMatchIndex = indexOfTheOneAndOnlyFaceUpCard {
+            var scoreMultiplier: Int = 0
+            let secondsSinceLastChoosing = Int(Date().timeIntervalSince(dateOfLastCardChoosing))
+
             if cards[chosenIndex].content == cards[potentialMatchIndex].content {
                 cards[chosenIndex].isMatched = true
                 cards[potentialMatchIndex].isMatched = true
-                score += 2
+                scoreMultiplier = 2
             } else {
                 if cards[chosenIndex].hasBeenSeen {
-                    score -= 1
+                    scoreMultiplier = -1
                 }
                 if cards[potentialMatchIndex].hasBeenSeen {
-                    score -= 1
+                    scoreMultiplier = -1
                 }
             }
+
+            score += scoreMultiplier * max(cards.count - secondsSinceLastChoosing, 1)
             cards[chosenIndex].isFaceUp = true
         } else {
+            dateOfLastCardChoosing = Date()
             indexOfTheOneAndOnlyFaceUpCard = chosenIndex
         }
     }
