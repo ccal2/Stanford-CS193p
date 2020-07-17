@@ -42,7 +42,7 @@ class EmojiMemoryGame: ObservableObject {
 
     // MARK: Static
 
-    static func createMemoryGame(with theme: StringMemoryGame.Theme) -> MemoryGame<String> {
+    private static func createMemoryGame(with theme: StringMemoryGame.Theme) -> MemoryGame<String> {
         let content = theme.content.shuffled()
         return StringMemoryGame(numberOfPairsOfCards: theme.numberOfPairsOfCards ?? Int.random(in: 2 ... 5)) { pairIndex in
             content[pairIndex]

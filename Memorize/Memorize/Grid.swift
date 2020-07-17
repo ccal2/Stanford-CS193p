@@ -10,8 +10,8 @@ import SwiftUI
 
 struct Grid<Item: Identifiable, ItemVIew: View>: View {
 
-    var items: [Item]
-    var viewForItem: (Item) -> ItemVIew
+    private var items: [Item]
+    private var viewForItem: (Item) -> ItemVIew
 
     // MARK: Body
 
@@ -21,7 +21,7 @@ struct Grid<Item: Identifiable, ItemVIew: View>: View {
         }
     }
 
-    func body(for layout: GridLayout) -> some View {
+    private func body(for layout: GridLayout) -> some View {
         ForEach(items) { item in
             self.viewForItem(item)
                 .frame(width: layout.itemSize.width, height: layout.itemSize.height)
