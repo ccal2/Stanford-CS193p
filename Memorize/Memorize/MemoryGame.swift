@@ -8,11 +8,13 @@
 
 import Foundation
 
-struct MemoryGame<CardContent: Equatable> {
+struct MemoryGame<CardContent: Hashable> {
 
     // MARK: - Properties
 
     var cards: [Card]
+    var score: Int
+
     var indexOfTheOneAndOnlyFaceUpCard: Int? {
         get {
             cards.indices.filter { index in cards[index].isFaceUp }.only
@@ -20,6 +22,7 @@ struct MemoryGame<CardContent: Equatable> {
 
         set {
             for index in cards.indices {
+                cards[index].hasBeenSeen = cards[index].hasBeenSeen ? true : cards[index].isFaceUp
                 cards[index].isFaceUp = (index == newValue)
             }
         }
@@ -37,6 +40,7 @@ struct MemoryGame<CardContent: Equatable> {
             cards.append(Card(content: content, id: pairIndex*2 + 1))
         }
         cards.shuffle()
+        score = 0
     }
 
     // MARK: Card manipulation
@@ -49,6 +53,14 @@ struct MemoryGame<CardContent: Equatable> {
             if cards[chosenIndex].content == cards[potentialMatchIndex].content {
                 cards[chosenIndex].isMatched = true
                 cards[potentialMatchIndex].isMatched = true
+                score += 2
+            } else {
+                if cards[chosenIndex].hasBeenSeen {
+                    score -= 1
+                }
+                if cards[potentialMatchIndex].hasBeenSeen {
+                    score -= 1
+                }
             }
             cards[chosenIndex].isFaceUp = true
         } else {
@@ -66,9 +78,10 @@ extension MemoryGame {
 
         // MARK: Properties
 
+        var content: CardContent
         var isFaceUp: Bool = false
         var isMatched: Bool = false
-        var content: CardContent
+        var hasBeenSeen: Bool = false
 
         // MARK: Identifiable
 

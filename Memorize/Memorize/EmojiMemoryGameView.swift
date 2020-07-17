@@ -15,16 +15,30 @@ struct EmojiMemoryGameView: View {
     // MARK: Body
 
     var body: some View {
-        HStack {
-            Grid(viewModel.cards) { card in
-                CardView(card: card)
-                    .aspectRatio(2/3, contentMode: .fit)
-                    .foregroundColor(.orange)
-                    .padding(5)
-                    .onTapGesture {
-                        self.viewModel.choose(card: card)
+        VStack {
+            Group {
+                Text(viewModel.themeName)
+                    .font(.largeTitle)
+                Spacer()
+                Text(viewModel.score)
+                    .font(.title)
+                Grid(viewModel.cards) { card in
+                    CardView(card: card)
+                        .aspectRatio(3/3.5, contentMode: .fit)
+                        .padding(5)
+                        .onTapGesture {
+                            self.viewModel.choose(card: card)
                     }
+                }
             }
+                .foregroundColor(self.viewModel.color)
+            Divider()
+            Button (action: {
+                self.viewModel.startNewGame()
+            }, label: {
+                Text("New Game")
+                    .font(.title)
+            })
         }
             .padding()
     }
