@@ -16,15 +16,15 @@ extension MemoryGame {
 
         let name: String
         let content: Set<CardContent>
-        let color: Color
+        let gradientColors: [Color]
         let numberOfPairsOfCards: Int?
 
         // MARK: - Initializers
 
-        init(name: String, content: Set<CardContent>, color: Color, numberOfPairsOfCards: Int? = nil) {
+        init(name: String, content: Set<CardContent>, gradientColors: [Color], numberOfPairsOfCards: Int? = nil) {
             self.name = name
             self.content = content
-            self.color = color
+            self.gradientColors = gradientColors
             self.numberOfPairsOfCards = numberOfPairsOfCards
         }
 
@@ -41,19 +41,19 @@ extension MemoryGame.Theme where CardContent == String {
     static let halloween = MemoryGame.Theme(name: "Halloween",
                                             content: ["👻", "🎃", "🕷", "🧟‍♀️", "🔮", "🦇", "🕸", "🧛🏻‍♀️", "🤡", "⚰️",
                                                       "🔪", "🩸"],
-                                            color: .orange)
+                                            gradientColors: [.orange, .purple])
 
     static let animals = MemoryGame.Theme(name: "Animals",
                                           content: ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯",
                                                     "🦁", "🐮", "🐷", "🐸", "🐵", "🐔", "🐧", "🐦", "🐤", "🐺",
                                                     "🐗", "🐴", "🦄", "🐝", "🐛", "🦋", "🐌", "🐞", "🐜", "🐢",
                                                     "🐙", "🦑", "🐳"],
-                                          color: .green,
+                                          gradientColors: [.green, .yellow],
                                           numberOfPairsOfCards: 5)
 
     static let sports = MemoryGame.Theme(name: "Sports",
                                          content: ["⚽️", "🏀", "🏈", "⚾️", "🥎", "🎾", "🏐", "🏉"],
-                                         color: .gray,
+                                         gradientColors: [.gray, .green],
                                          numberOfPairsOfCards: 2)
 
     static let faces = MemoryGame.Theme(name: "Faces",
@@ -61,17 +61,17 @@ extension MemoryGame.Theme where CardContent == String {
                                                   "😎", "🤩", "🥳", "😏", "😞", "😕", "😣", "😫", "🥺", "😭",
                                                   "😤", "🤬", "🤯", "😳", "🥶", "😱", "🤗", "🤫", "😬", "🙄",
                                                   "😴", "🤤", "🤮", "🤧", "😷", "🤠"],
-                                        color: .yellow,
+                                        gradientColors: [.yellow, .blue],
                                         numberOfPairsOfCards: 3)
 
     static let professions = MemoryGame.Theme(name: "Professions",
                                               content: ["👮‍♀️", "👷‍♀️", "🕵️‍♀️", "👩‍⚕️", "👩‍🌾", "👩‍🍳", "👩‍🎤", "👩‍🏫", "👩‍🏭", "👩‍💻",
                                                         "👩‍🔧", "👩‍🔬", "👩‍🎨", "👩‍🚒", "👩‍✈️", "👩‍🚀", "👩‍⚖️"],
-                                              color: .blue)
+                                              gradientColors: [.blue, .red])
 
     static let clothings = MemoryGame.Theme(name: "Clothings",
                                             content: ["🧥", "🥼", "🦺", "👚", "👕", "👖", "🩲", "🩳", "👔", "👗",
                                                       "👙", "👘", "🥻", "🩱", "🧦", "🧤", "🧣"],
-                                            color: .purple)
+                                            gradientColors: [.purple, .pink])
 
 }

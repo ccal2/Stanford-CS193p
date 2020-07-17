@@ -23,7 +23,7 @@ struct EmojiMemoryGameView: View {
                 Text(viewModel.score)
                     .font(.title)
                 Grid(viewModel.cards) { card in
-                    CardView(card: card)
+                    CardView(card: card, gradientColors: self.viewModel.gradientColors)
                         .aspectRatio(3/3.5, contentMode: .fit)
                         .padding(5)
                         .onTapGesture {
@@ -31,7 +31,7 @@ struct EmojiMemoryGameView: View {
                     }
                 }
             }
-                .foregroundColor(self.viewModel.color)
+                .foregroundColor(self.viewModel.gradientColors.first)
             Divider()
             Button (action: {
                 self.viewModel.startNewGame()
@@ -49,7 +49,8 @@ struct EmojiMemoryGameView: View {
 
 struct CardView: View {
 
-    var card: MemoryGame<String>.Card
+    let card: MemoryGame<String>.Card
+    let gradientColors: [Color]
 
     // MARK: Drawing Constants
 
@@ -78,7 +79,7 @@ struct CardView: View {
                     .font(Font.system(size: fontSize(size)))
             } else if !card.isMatched {
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .fill()
+                    .fill(LinearGradient(gradient: Gradient(colors: gradientColors), startPoint: .top, endPoint: .bottomTrailing))
             }
         }
     }

@@ -24,8 +24,8 @@ class EmojiMemoryGame: ObservableObject {
         "Score: \(model.score)"
     }
 
-    var color: Color {
-        theme.color
+    var gradientColors: [Color] {
+        theme.gradientColors
     }
 
     var themeName: String {
