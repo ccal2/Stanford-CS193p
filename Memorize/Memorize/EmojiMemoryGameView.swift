@@ -28,7 +28,7 @@ struct EmojiMemoryGameView: View {
                         .padding(5)
                         .onTapGesture {
                             self.viewModel.choose(card: card)
-                    }
+                        }
                 }
             }
                 .foregroundColor(self.viewModel.gradientColors.first)
