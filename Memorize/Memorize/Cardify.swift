@@ -8,12 +8,23 @@
 
 import SwiftUI
 
-struct Cardify: ViewModifier {
+struct Cardify: AnimatableModifier {
 
     // MARK: - Properties
 
     let gradientColors: [Color]
-    var isFaceUp: Bool
+    var rotation: Double
+
+    var isFaceUp: Bool {
+        rotation < 90
+    }
+
+    // MARK: AnimatableModifier
+
+    var animatableData: Double {
+        get { rotation }
+        set { rotation = newValue }
+    }
 
     // MARK: Drawing Constants
 
@@ -22,19 +33,31 @@ struct Cardify: ViewModifier {
 
     // MARK: - Methods
 
+    // MARK: Initializer
+
+    init(gradientColors: [Color], isFaceUp: Bool) {
+        self.gradientColors = gradientColors
+        self.rotation = isFaceUp ? 0 : 180
+    }
+
+    // MARK: Body (AnimatableModifier)
+
     func body(content: Content) -> some View {
         ZStack {
-            if isFaceUp {
+            Group {
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .fill(Color.white)
-                RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(lineWidth: edgeLineWidth)
-                content
-            } else {
-                RoundedRectangle(cornerRadius: cornerRadius)
-                    .fill(LinearGradient(gradient: Gradient(colors: gradientColors), startPoint: .top, endPoint: .bottomTrailing))
+                .fill(Color.white)
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .stroke(lineWidth: edgeLineWidth)
+            content
             }
+                .opacity(isFaceUp ? 1 : 0)
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .fill(LinearGradient(gradient: Gradient(colors: gradientColors), startPoint: .top, endPoint: .bottomTrailing))
+                .opacity(isFaceUp ? 0 : 1)
+            
         }
+            .rotation3DEffect(Angle.degrees(rotation), axis: (0, 1, 0))
     }
 }
 

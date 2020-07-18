@@ -10,10 +10,12 @@ import SwiftUI
 
 struct Grid<Item: Identifiable, ItemVIew: View>: View {
 
+    // MARK: - Properties
+
     private var items: [Item]
     private var viewForItem: (Item) -> ItemVIew
 
-    // MARK: Body
+    // MARK: - Body
 
     var body: some View {
         GeometryReader { geometry in
@@ -28,6 +30,8 @@ struct Grid<Item: Identifiable, ItemVIew: View>: View {
                 .position(layout.location(ofItemAt: self.items.firstIndex(matching: item)!))
         }
     }
+
+    // MARK: - Methods
 
     // MARK: Itializers
 
