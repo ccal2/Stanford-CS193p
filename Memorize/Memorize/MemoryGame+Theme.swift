@@ -6,7 +6,7 @@
 //  Copyright © 2020 Carolina Lopes. All rights reserved.
 //
 
-import SwiftUI
+import struct SwiftUI.Color
 
 extension MemoryGame {
 
