@@ -19,9 +19,9 @@ struct SetGameView: View {
     var body: some View {
         VStack {
             Button(action: {
-                self.viewModel.testAction()
+                self.viewModel.deal3MoreCards()
             }, label: {
-                Text("Action")
+                Text("Deal More 3 Cards")
             })
         }
     }

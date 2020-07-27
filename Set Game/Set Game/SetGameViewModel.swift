@@ -15,7 +15,7 @@ class SetGameViewModel: ObservableObject {
     // MARK: Access to the Model
 
     var cards: [SetGame.Card] {
-        game.deck
+        game.dealtCards
     }
 
     // MARK: Model
@@ -32,8 +32,8 @@ class SetGameViewModel: ObservableObject {
 
     // MARK: Intent
 
-    func testAction() {
-        game.testAction()
+    func deal3MoreCards() {
+        game.deal3Cards()
     }
 
 }

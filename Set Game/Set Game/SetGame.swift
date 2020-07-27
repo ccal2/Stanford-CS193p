@@ -11,6 +11,7 @@ struct SetGame {
     // MARK: - Properties
 
     private(set) var deck: [Card]
+    private(set) var dealtCards: [Card]
 
     // MARK: - Methods
 
@@ -30,16 +31,18 @@ struct SetGame {
         }
 
         deck.shuffle()
+
+        dealtCards = deck.deal(numberOfCards: 12)
+        print("deck.count: \(deck.count)")
+        print("dealtCards.count: \(dealtCards.count)")
     }
 
     // MARK: Game logic
 
-    func testAction() {
-        print("The deck has \(deck.count) cards:")
-        for card in deck {
-            print(card)
-        }
-        print()
+    mutating func deal3Cards() {
+        dealtCards += deck.deal(numberOfCards: 3)
+        print("deck.count: \(deck.count)")
+        print("dealtCards.count: \(dealtCards.count)")
     }
 
 }
@@ -48,7 +51,7 @@ struct SetGame {
 
 extension SetGame {
 
-    struct Card: CustomStringConvertible {
+    struct Card: CustomStringConvertible, Identifiable {
 
         // MARK: - Properties
 
@@ -63,6 +66,12 @@ extension SetGame {
 
         var description: String {
             "(shape: \(shape), quantity: \(quantity), shading: \(shading), color: \(color))"
+        }
+
+        // MARK: Identifiable
+
+        var id: String {
+            description
         }
 
     }
