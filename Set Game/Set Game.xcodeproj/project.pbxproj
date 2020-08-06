@@ -15,7 +15,10 @@
 		2340F84C24CF60BA00E4828B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2340F84A24CF60BA00E4828B /* LaunchScreen.storyboard */; };
 		2340F85424CF610700E4828B /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2340F85324CF610700E4828B /* SetGame.swift */; };
 		2340F85624CF654200E4828B /* SetGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2340F85524CF654200E4828B /* SetGameViewModel.swift */; };
+		2340F87D24CF6BFA00E4828B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2340F87C24CF6BFA00E4828B /* CardView.swift */; };
 		2340F87F24CF718B00E4828B /* Array+Deal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2340F87E24CF718B00E4828B /* Array+Deal.swift */; };
+		2360EA5224DCAE7E0092389E /* SetGameColor+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360EA5124DCAE7E0092389E /* SetGameColor+SwiftUI.swift */; };
+		23AF972024DCA5230059FFEC /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF971F24DCA5230059FFEC /* Diamond.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +32,10 @@
 		2340F84D24CF60BA00E4828B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2340F85324CF610700E4828B /* SetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
 		2340F85524CF654200E4828B /* SetGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameViewModel.swift; sourceTree = "<group>"; };
+		2340F87C24CF6BFA00E4828B /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		2340F87E24CF718B00E4828B /* Array+Deal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Deal.swift"; sourceTree = "<group>"; };
+		2360EA5124DCAE7E0092389E /* SetGameColor+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetGameColor+SwiftUI.swift"; sourceTree = "<group>"; };
+		23AF971F24DCA5230059FFEC /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,8 +71,11 @@
 				2340F83F24CF60B700E4828B /* AppDelegate.swift */,
 				2340F84124CF60B700E4828B /* SceneDelegate.swift */,
 				2340F85324CF610700E4828B /* SetGame.swift */,
+				2360EA5124DCAE7E0092389E /* SetGameColor+SwiftUI.swift */,
 				2340F85524CF654200E4828B /* SetGameViewModel.swift */,
 				2340F84324CF60B700E4828B /* SetGameView.swift */,
+				2340F87C24CF6BFA00E4828B /* CardView.swift */,
+				23AF971F24DCA5230059FFEC /* Diamond.swift */,
 				2340F87E24CF718B00E4828B /* Array+Deal.swift */,
 				2340F84524CF60BA00E4828B /* Assets.xcassets */,
 				2340F84A24CF60BA00E4828B /* LaunchScreen.storyboard */,
@@ -158,8 +167,11 @@
 				2340F87F24CF718B00E4828B /* Array+Deal.swift in Sources */,
 				2340F84024CF60B700E4828B /* AppDelegate.swift in Sources */,
 				2340F84224CF60B700E4828B /* SceneDelegate.swift in Sources */,
+				2360EA5224DCAE7E0092389E /* SetGameColor+SwiftUI.swift in Sources */,
 				2340F85424CF610700E4828B /* SetGame.swift in Sources */,
+				23AF972024DCA5230059FFEC /* Diamond.swift in Sources */,
 				2340F84424CF60B700E4828B /* SetGameView.swift in Sources */,
+				2340F87D24CF6BFA00E4828B /* CardView.swift in Sources */,
 				2340F85624CF654200E4828B /* SetGameViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

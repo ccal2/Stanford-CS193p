@@ -18,6 +18,10 @@ struct SetGameView: View {
 
     var body: some View {
         VStack {
+            ForEach(viewModel.cards) { card in
+                CardView(card: card)
+                    .aspectRatio(2/3, contentMode: .fit)
+            }
             Button(action: {
                 self.viewModel.deal3MoreCards()
             }, label: {

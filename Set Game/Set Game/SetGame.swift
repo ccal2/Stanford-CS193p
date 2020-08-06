@@ -51,7 +51,7 @@ struct SetGame {
 
 extension SetGame {
 
-    struct Card: CustomStringConvertible, Identifiable {
+    struct Card: Identifiable {
 
         // MARK: - Properties
 
@@ -62,16 +62,10 @@ extension SetGame {
         let shading: Shading
         let color: Color
 
-        // MARK: CustomStringConvertible
-
-        var description: String {
-            "(shape: \(shape), quantity: \(quantity), shading: \(shading), color: \(color))"
-        }
-
         // MARK: Identifiable
 
         var id: String {
-            description
+            "(shape: \(shape), quantity: \(quantity), shading: \(shading), color: \(color))"
         }
 
     }
@@ -82,44 +76,28 @@ extension SetGame {
 
 extension SetGame {
 
-    enum Shape: String, CaseIterable {
+    enum Shape: CaseIterable {
         case diamond
         case rectangle
         case oval
-
-        var description: String {
-            rawValue
-        }
     }
 
     enum Quantity: Int, CaseIterable {
         case one = 1
         case two
         case three
-
-        var description: String {
-            String(rawValue)
-        }
     }
 
-    enum Shading: String, CaseIterable {
+    enum Shading: CaseIterable {
         case open
         case striped
         case solid
-
-        var description: String {
-            rawValue
-        }
     }
 
-    enum Color: String, CaseIterable {
+    enum Color: CaseIterable {
         case red
         case green
         case purple
-
-        var description: String {
-            rawValue
-        }
     }
 
 }
