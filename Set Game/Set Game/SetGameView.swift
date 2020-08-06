@@ -21,7 +21,7 @@ struct SetGameView: View {
             Button(action: {
                 self.viewModel.deal3MoreCards()
             }, label: {
-                Text("Deal More 3 Cards")
+                Text("Deal 3 More Cards")
             })
         }
     }
