@@ -20,7 +20,7 @@ class SetGameViewModel: ObservableObject {
 
     // MARK: Model
 
-    private var game: SetGame
+    @Published private var game: SetGame
 
     // MARK: - Methods
 
