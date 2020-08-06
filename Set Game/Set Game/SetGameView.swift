@@ -14,13 +14,19 @@ struct SetGameView: View {
 
     @ObservedObject var viewModel: SetGameViewModel
 
+    // MARK: Drawing Constants
+
+    private let cardAspectRatio: CGFloat = 2/3
+    private let cardPadding: CGFloat = 5.0
+
     // MARK: - Body
 
     var body: some View {
         VStack {
-            ForEach(viewModel.cards) { card in
+            Grid(viewModel.cards) { card in
                 CardView(card: card)
-                    .aspectRatio(2/3, contentMode: .fit)
+                    .aspectRatio(self.cardAspectRatio, contentMode: .fit)
+                    .padding(self.cardPadding)
             }
             Button(action: {
                 self.viewModel.deal3MoreCards()
