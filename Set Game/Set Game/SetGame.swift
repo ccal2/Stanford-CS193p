@@ -74,9 +74,15 @@ struct SetGame {
 
     mutating func select(_ card: Card) {
         if numberOfSelectedCards == 3 {
-            resolveMatch()
-            for index in dealtCards.indices {
-                dealtCards[index].state.revertMatchTest()
+            if dealtCards[selectedCardsIndexes[0]].isMatched {
+                resolveMatch()
+                if dealtCards.count < 12 {
+                    deal3Cards()
+                }
+            } else {
+                for index in dealtCards.indices {
+                    dealtCards[index].state.revertMatchTest()
+                }
             }
         }
 
