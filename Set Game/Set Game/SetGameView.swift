@@ -36,6 +36,7 @@ struct SetGameView: View {
             }, label: {
                 Text("Deal 3 More Cards")
             })
+                .disabled(viewModel.isDeckEmpty)
         }
     }
 

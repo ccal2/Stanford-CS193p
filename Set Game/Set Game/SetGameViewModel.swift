@@ -18,6 +18,10 @@ class SetGameViewModel: ObservableObject {
         game.dealtCards
     }
 
+    var isDeckEmpty: Bool {
+        game.deck.isEmpty
+    }
+
     // MARK: Model
 
     @Published private var game: SetGame
