@@ -22,8 +22,16 @@ struct SetGameView: View {
     // MARK: - Body
 
     var body: some View {
-        NavigationView {
+        VStack(alignment: .trailing) {
+            Button(action: {
+                self.viewModel.startNewGame()
+            }, label: {
+                Text("New Game")
+            })
             VStack {
+                Text("Set")
+                    .font(.system(.largeTitle))
+                    .bold()
                 Grid(viewModel.cards) { card in
                     CardView(card: card)
                         .aspectRatio(self.cardAspectRatio, contentMode: .fit)
@@ -40,13 +48,6 @@ struct SetGameView: View {
                     .disabled(viewModel.isDeckEmpty)
                     .padding()
             }
-                .navigationBarTitle("Set")
-                .navigationBarItems(trailing:
-                    Button(action: {
-                        self.viewModel.startNewGame()
-                    }, label: {
-                        Text("New Game")
-                    }))
         }
     }
 
