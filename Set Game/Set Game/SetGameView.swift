@@ -27,6 +27,9 @@ struct SetGameView: View {
                 CardView(card: card)
                     .aspectRatio(self.cardAspectRatio, contentMode: .fit)
                     .padding(self.cardPadding)
+                    .onTapGesture {
+                        self.viewModel.select(card)
+                    }
             }
             Button(action: {
                 self.viewModel.deal3MoreCards()

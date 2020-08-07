@@ -17,9 +17,21 @@ struct CardView: View {
     // MARK: Drawing Constants
 
     let cornerRadius: CGFloat = 10.0
-    let edgeLineWidth: CGFloat = 3.0
+    let edgeLineWidth: CGFloat = 4.0
     let shapeAspectRatio: CGFloat = 2.0
     let frameMultiplier: CGFloat = 0.75
+    var strokeColor: (SetGame.Card) -> Color = { card in
+        switch card.state {
+        case .unselected:
+            return .gray
+        case .selected:
+            return .blue
+        case .matched:
+            return .green
+        case .unmatched:
+            return .red
+        }
+    }
 
     // MARK: - Body
 
@@ -35,7 +47,7 @@ struct CardView: View {
                 .fill(Color.white)
             RoundedRectangle(cornerRadius: cornerRadius)
                 .stroke(lineWidth: edgeLineWidth)
-                .foregroundColor(.gray)
+                .foregroundColor(strokeColor(card))
             VStack {
                 ForEach (0 ..< card.quantity.rawValue) { _ in
                     self.cardShape()
