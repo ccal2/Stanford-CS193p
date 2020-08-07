@@ -35,6 +35,7 @@ struct CardView: View {
                 .fill(Color.white)
             RoundedRectangle(cornerRadius: cornerRadius)
                 .stroke(lineWidth: edgeLineWidth)
+                .foregroundColor(.gray)
             VStack {
                 ForEach (0 ..< card.quantity.rawValue) { _ in
                     self.cardShape()
@@ -69,7 +70,12 @@ struct CardView: View {
             Diamond()
                 .stroke(lineWidth: edgeLineWidth)
         } else if card.shading == .striped {
-            Diamond() // TODO: Apply striped fill
+            ZStack {
+                Diamond()
+                    .stroke(lineWidth: edgeLineWidth)
+                Diamond()
+                    .fill(ImagePaint(image: Image("striped")))
+            }
         } else {    // card.sading == .solid
             Diamond()
         }
@@ -81,7 +87,12 @@ struct CardView: View {
             Rectangle()
                 .stroke(lineWidth: edgeLineWidth)
         } else if card.shading == .striped {
-            Rectangle() // TODO: Apply striped fill
+            ZStack {
+                Rectangle()
+                    .stroke(lineWidth: edgeLineWidth)
+                Rectangle()
+                    .fill(ImagePaint(image: Image("striped")))
+            }
         } else {    // card.sading == .solid
             Rectangle()
         }
@@ -93,7 +104,12 @@ struct CardView: View {
             Capsule()
                 .stroke(lineWidth: self.edgeLineWidth)
         } else if card.shading == .striped {
-            Capsule() // TODO: Apply striped fill
+            ZStack {
+                Capsule()
+                    .stroke(lineWidth: self.edgeLineWidth)
+                Capsule()
+                    .fill(ImagePaint(image: Image("striped")))
+            }
         } else {    // card.sading == .solid
             Capsule()
         }
