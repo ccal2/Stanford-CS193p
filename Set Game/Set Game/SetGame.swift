@@ -33,11 +33,23 @@ struct SetGame {
         return indexes
     }
 
+    // MARK: Constant
+
+    let initialNumberOfCards: Int = 12
+
     // MARK: - Methods
 
     // MARK: Initializer
 
     init() {
+        deck = []
+        dealtCards = []
+        startNewGame()
+    }
+
+    // MARK: Game logic
+
+    mutating func startNewGame() {
         deck = []
 
         for shape in Shape.allCases {
@@ -52,18 +64,12 @@ struct SetGame {
 
         deck.shuffle()
 
-        dealtCards = deck.deal(numberOfCards: 12)
-        print("deck.count: \(deck.count)")
-        print("dealtCards.count: \(dealtCards.count)")
+        dealtCards = deck.deal(numberOfCards: initialNumberOfCards)
     }
-
-    // MARK: Game logic
 
     mutating func deal3Cards() {
         resolveMatch()
         dealtCards += deck.deal(numberOfCards: 3)
-        print("deck.count: \(deck.count)")
-        print("dealtCards.count: \(dealtCards.count)")
     }
 
     mutating func select(_ card: Card) {

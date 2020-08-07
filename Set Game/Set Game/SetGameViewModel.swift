@@ -36,12 +36,16 @@ class SetGameViewModel: ObservableObject {
 
     // MARK: Intents
 
+    func select(_ card: SetGame.Card) {
+        game.select(card)
+    }
+
     func deal3MoreCards() {
         game.deal3Cards()
     }
 
-    func select(_ card: SetGame.Card) {
-        game.select(card)
+    func startNewGame() {
+        game.startNewGame()
     }
 
 }

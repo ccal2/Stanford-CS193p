@@ -22,21 +22,31 @@ struct SetGameView: View {
     // MARK: - Body
 
     var body: some View {
-        VStack {
-            Grid(viewModel.cards) { card in
-                CardView(card: card)
-                    .aspectRatio(self.cardAspectRatio, contentMode: .fit)
-                    .padding(self.cardPadding)
-                    .onTapGesture {
-                        self.viewModel.select(card)
+        NavigationView {
+            VStack {
+                Grid(viewModel.cards) { card in
+                    CardView(card: card)
+                        .aspectRatio(self.cardAspectRatio, contentMode: .fit)
+                        .padding(self.cardPadding)
+                        .onTapGesture {
+                            self.viewModel.select(card)
                     }
+                }
+                Button(action: {
+                    self.viewModel.deal3MoreCards()
+                }, label: {
+                    Text("Deal 3 More Cards")
+                })
+                    .disabled(viewModel.isDeckEmpty)
+                    .padding()
             }
-            Button(action: {
-                self.viewModel.deal3MoreCards()
-            }, label: {
-                Text("Deal 3 More Cards")
-            })
-                .disabled(viewModel.isDeckEmpty)
+                .navigationBarTitle("Set")
+                .navigationBarItems(trailing:
+                    Button(action: {
+                        self.viewModel.startNewGame()
+                    }, label: {
+                        Text("New Game")
+                    }))
         }
     }
 
