@@ -18,6 +18,10 @@ struct SetGameView: View {
 
     private let cardAspectRatio: CGFloat = 2/3
     private let cardPadding: CGFloat = 5.0
+    private let transitionDuration: Double = 0.5
+    private var offset: CGSize {
+        CGSize(width: CGFloat.random(in: -1000...1000), height: CGFloat.random(in: -1000...1000))
+    }
 
     // MARK: - Body
 
@@ -39,6 +43,8 @@ struct SetGameView: View {
                         .onTapGesture {
                             self.viewModel.select(card)
                     }
+                    .transition(.offset(self.offset))
+                    .animation(.easeInOut(duration: self.transitionDuration))
                 }
                 Button(action: {
                     self.viewModel.deal3MoreCards()
@@ -49,6 +55,9 @@ struct SetGameView: View {
                     .padding()
             }
         }
+            .onAppear() {
+                self.viewModel.startNewGame()
+            }
     }
 
 }

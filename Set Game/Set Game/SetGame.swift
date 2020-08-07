@@ -44,7 +44,6 @@ struct SetGame {
     init() {
         deck = []
         dealtCards = []
-        startNewGame()
     }
 
     // MARK: Game logic
