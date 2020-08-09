@@ -6,7 +6,7 @@
 //  Copyright © 2020 Carolina Lopes. All rights reserved.
 //
 
-func allEqual<T: Equatable>(_ elements: T...) -> Bool {
+func allEqual<T: Equatable>(_ elements: [T]) -> Bool {
     for index in 0 ..< elements.count - 1 {
         if elements[index] != elements[index+1] {
             return false
@@ -16,7 +16,7 @@ func allEqual<T: Equatable>(_ elements: T...) -> Bool {
     return true
 }
 
-func allDifferent<T: Equatable>(_ elements: T...) -> Bool {
+func allDifferent<T: Equatable>(_ elements: [T]) -> Bool {
     for i in 0 ..< elements.count - 1 {
         for j in i+1 ..< elements.count {
             if elements[i] == elements[j] {
@@ -26,4 +26,8 @@ func allDifferent<T: Equatable>(_ elements: T...) -> Bool {
     }
 
     return true
+}
+
+func allEqualOrAllDifferent<T: Equatable>(_ elements: [T]) -> Bool {
+    return allEqual(elements) || allDifferent(elements)
 }

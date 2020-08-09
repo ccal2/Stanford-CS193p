@@ -22,6 +22,10 @@ class SetGameViewModel: ObservableObject {
         game.deck.isEmpty
     }
 
+    var numberOfCardsToDeal: Int {
+        game.numberOfCardsToDeal
+    }
+
     // MARK: Model
 
     @Published private var game: SetGame
@@ -40,8 +44,8 @@ class SetGameViewModel: ObservableObject {
         game.select(card)
     }
 
-    func deal3MoreCards() {
-        game.deal3Cards()
+    func dealMoreCards() {
+        game.dealMoreCards()
     }
 
     func startNewGame() {
