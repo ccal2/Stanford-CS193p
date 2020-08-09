@@ -19,6 +19,7 @@ struct SetGameView: View {
     private let cardAspectRatio: CGFloat = 2/3
     private let cardPadding: CGFloat = 5.0
     private let transitionDuration: Double = 0.5
+
     private var offset: CGSize {
         CGSize(width: CGFloat.random(in: -1000...1000), height: CGFloat.random(in: -1000...1000))
     }

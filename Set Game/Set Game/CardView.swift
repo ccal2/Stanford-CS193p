@@ -16,12 +16,12 @@ struct CardView: View {
 
     // MARK: Drawing Constants
 
-    let cornerRadius: CGFloat = 10.0
-    let edgeLineWidth: CGFloat = 4.0
-    let shapeAspectRatio: CGFloat = 2.0
-    let frameMultiplier: CGFloat = 0.75
+    private let cornerRadius: CGFloat = 10.0
+    private let edgeLineWidth: CGFloat = 4.0
+    private let shapeAspectRatio: CGFloat = 2.0
+    private let frameMultiplier: CGFloat = 0.75
 
-    let borderColor: (SetGame.Card) -> Color = { card in
+    private let borderColor: (SetGame.Card) -> Color = { card in
         switch card.state {
         case .unselected:
             return .gray
@@ -34,7 +34,7 @@ struct CardView: View {
         }
     }
 
-    let cardColor: (SetGame.Card) -> Color = { card in
+    private let cardColor: (SetGame.Card) -> Color = { card in
         switch card.color {
         case .red:
             return .red

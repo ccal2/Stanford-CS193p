@@ -113,10 +113,10 @@ struct SetGame {
         let shadings = cards.map { $0.shading }
         let colors = cards.map { $0.color }
 
-        return allEqualOrAllDifferent(shapes)
-            && allEqualOrAllDifferent(quantities)
-            && allEqualOrAllDifferent(shadings)
-            && allEqualOrAllDifferent(colors)
+        return shapes.isAllEqualOrAllDifferent()
+            && quantities.isAllEqualOrAllDifferent()
+            && shadings.isAllEqualOrAllDifferent()
+            && colors.isAllEqualOrAllDifferent()
     }
 
 }

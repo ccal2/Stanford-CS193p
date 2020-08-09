@@ -32,7 +32,7 @@ class SetGameViewModel: ObservableObject {
 
     // MARK: - Methods
 
-    // MARK: Initializers
+    // MARK: Initializer
 
     init() {
         game = SetGame()

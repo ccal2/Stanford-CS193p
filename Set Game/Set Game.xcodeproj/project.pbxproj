@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2311A98124DCF45F00C94F08 /* EqualityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2311A98024DCF45F00C94F08 /* EqualityCheck.swift */; };
+		2311A98124DCF45F00C94F08 /* Array+EqualityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2311A98024DCF45F00C94F08 /* Array+EqualityCheck.swift */; };
 		2340F84024CF60B700E4828B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2340F83F24CF60B700E4828B /* AppDelegate.swift */; };
 		2340F84224CF60B700E4828B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2340F84124CF60B700E4828B /* SceneDelegate.swift */; };
 		2340F84424CF60B700E4828B /* SetGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2340F84324CF60B700E4828B /* SetGameView.swift */; };
@@ -26,7 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2311A98024DCF45F00C94F08 /* EqualityCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualityCheck.swift; sourceTree = "<group>"; };
+		2311A98024DCF45F00C94F08 /* Array+EqualityCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+EqualityCheck.swift"; sourceTree = "<group>"; };
 		2340F83C24CF60B700E4828B /* Set Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Set Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2340F83F24CF60B700E4828B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2340F84124CF60B700E4828B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 		2340F83E24CF60B700E4828B /* Set Game */ = {
 			isa = PBXGroup;
 			children = (
-				2311A98024DCF45F00C94F08 /* EqualityCheck.swift */,
+				2311A98024DCF45F00C94F08 /* Array+EqualityCheck.swift */,
 				2340F87E24CF718B00E4828B /* Array+Deal.swift */,
 				2360EA5924DCB0290092389E /* Array+Identifiable.swift */,
 				2360EA5324DCAFD00092389E /* Grid.swift */,
@@ -181,7 +181,7 @@
 				2340F84024CF60B700E4828B /* AppDelegate.swift in Sources */,
 				2340F84224CF60B700E4828B /* SceneDelegate.swift in Sources */,
 				2360EA5524DCAFD00092389E /* Grid.swift in Sources */,
-				2311A98124DCF45F00C94F08 /* EqualityCheck.swift in Sources */,
+				2311A98124DCF45F00C94F08 /* Array+EqualityCheck.swift in Sources */,
 				2360EA5A24DCB0290092389E /* Array+Identifiable.swift in Sources */,
 				2340F85424CF610700E4828B /* SetGame.swift in Sources */,
 				23AF972024DCA5230059FFEC /* Diamond.swift in Sources */,

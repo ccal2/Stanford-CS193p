@@ -49,9 +49,7 @@ extension SetGame {
             }
         }
 
-        // MARK: - Methods
-
-        // MARK: Static
+        // MARK: - Static Methods
 
         static func createDeck() -> [Card] {
             var deck: [Card] = []
@@ -73,12 +71,12 @@ extension SetGame {
 
 }
 
-// MARK: - Identifiable & Equatable
+// MARK: - Identifiable
 
 extension SetGame.Card: Identifiable {
 
     var id: String {
-        "(shape: \(shape), quantity: \(quantity), shading: \(shading), color: \(color))"
+        "(\(shape), \(quantity), \(shading), \(color))"
     }
 
 }

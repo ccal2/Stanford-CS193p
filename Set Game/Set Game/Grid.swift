@@ -33,7 +33,7 @@ struct Grid<Item: Identifiable, ItemVIew: View>: View {
 
     // MARK: - Methods
 
-    // MARK: Itializers
+    // MARK: Itializer
 
     init(_ items: [Item], viewForItem: @escaping (Item) -> ItemVIew) {
         self.items = items
