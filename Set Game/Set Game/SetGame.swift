@@ -52,12 +52,24 @@ struct SetGame {
 
     mutating func startNewGame() {
         deck = Card.createDeck().shuffled()
-        dealtCards = deck.deal(numberOfCards: initialNumberOfCards)
+
+        var cards = deck.deal(numberOfCards: initialNumberOfCards)
+        for index in cards.indices {
+            cards[index].isFaceUp = true
+        }
+
+        dealtCards = cards
     }
 
     mutating func dealMoreCards() {
         removeMatchedCards()
-        dealtCards += deck.deal(numberOfCards: numberOfCardsToDeal)
+
+        var cards = deck.deal(numberOfCards: numberOfCardsToDeal)
+        for index in cards.indices {
+            cards[index].isFaceUp = true
+        }
+
+        dealtCards += cards
     }
 
     mutating func select(_ card: Card) {

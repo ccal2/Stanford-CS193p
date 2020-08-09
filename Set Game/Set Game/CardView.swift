@@ -55,18 +55,23 @@ struct CardView: View {
 
     private func body(for size: CGSize) -> some View {
         ZStack {
-            RoundedRectangle(cornerRadius: cornerRadius)
-                .fill(Color.white)
-            RoundedRectangle(cornerRadius: cornerRadius)
-                .stroke(lineWidth: edgeLineWidth)
-                .foregroundColor(borderColor(card))
-            VStack {
-                ForEach (0 ..< card.quantity.rawValue) { _ in
-                    self.cardShape()
+            if card.isFaceUp {
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .fill(Color.white)
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(lineWidth: edgeLineWidth)
+                    .foregroundColor(borderColor(card))
+                VStack {
+                    ForEach (0 ..< card.quantity.rawValue) { _ in
+                        self.cardShape()
+                    }
                 }
-            }
                 .frame(width: size.width * frameMultiplier, height: size.height * frameMultiplier, alignment: .center)
                 .foregroundColor(cardColor(card))
+            } else {
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .fill(Color.gray)
+            }
         }
     }
 

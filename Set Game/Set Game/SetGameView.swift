@@ -19,6 +19,8 @@ struct SetGameView: View {
     private let cardAspectRatio: CGFloat = 2/3
     private let cardPadding: CGFloat = 5.0
     private let transitionDuration: Double = 0.5
+    private let deckPadding: CGFloat = 20.0
+    private let deckHeight: CGFloat = 130
 
     private var offset: CGSize {
         CGSize(width: CGFloat.random(in: -1000...1000), height: CGFloat.random(in: -1000...1000))
@@ -27,33 +29,42 @@ struct SetGameView: View {
     // MARK: - Body
 
     var body: some View {
-        VStack(alignment: .trailing) {
-            Button(action: {
-                self.viewModel.startNewGame()
-            }, label: {
-                Text("New Game")
-            })
-            VStack {
+        VStack {
+            HStack {
+                Spacer()
+                Button(action: {
+                    self.viewModel.startNewGame()
+                }, label: {
+                    Text("New Game")
+                })
+                    .padding(.trailing)
+            }
+            HStack {
+                Spacer()
                 Text("Set")
                     .font(.system(.largeTitle))
                     .bold()
-                Grid(viewModel.cards) { card in
-                    CardView(card: card)
-                        .aspectRatio(self.cardAspectRatio, contentMode: .fit)
-                        .padding(self.cardPadding)
-                        .onTapGesture {
-                            self.viewModel.select(card)
+                Spacer()
+            }
+            HStack {
+                DeckView(viewModel: viewModel)
+                    .aspectRatio(cardAspectRatio, contentMode: .fit)
+                    .frame(width: nil, height: deckHeight)
+                    .padding(.leading, deckPadding)
+                    .onTapGesture {
+                        self.viewModel.dealMoreCards()
                     }
-                    .transition(.offset(self.offset))
-                    .animation(.easeInOut(duration: self.transitionDuration))
+                Spacer()
+            }
+            Grid(viewModel.cards) { card in
+                CardView(card: card)
+                    .aspectRatio(self.cardAspectRatio, contentMode: .fit)
+                    .padding(self.cardPadding)
+                    .onTapGesture {
+                        self.viewModel.select(card)
                 }
-                Button(action: {
-                    self.viewModel.dealMoreCards()
-                }, label: {
-                    Text("Deal \(self.viewModel.numberOfCardsToDeal) More Cards")
-                })
-                    .disabled(viewModel.isDeckEmpty)
-                    .padding()
+                .transition(.offset(self.offset))
+                .animation(.easeInOut(duration: self.transitionDuration))
             }
         }
             .onAppear() {

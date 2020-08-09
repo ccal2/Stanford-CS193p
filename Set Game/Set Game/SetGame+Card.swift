@@ -22,6 +22,7 @@ extension SetGame {
         // MARK: Control
 
         var state: State = .unselected
+        var isFaceUp: Bool = false
 
         var isSelected: Bool {
             get {

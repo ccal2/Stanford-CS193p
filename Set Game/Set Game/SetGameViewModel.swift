@@ -14,12 +14,12 @@ class SetGameViewModel: ObservableObject {
 
     // MARK: Access to the Model
 
-    var cards: [SetGame.Card] {
-        game.dealtCards
+    var deck: [SetGame.Card] {
+        game.deck
     }
 
-    var isDeckEmpty: Bool {
-        game.deck.isEmpty
+    var cards: [SetGame.Card] {
+        game.dealtCards
     }
 
     var numberOfCardsToDeal: Int {
