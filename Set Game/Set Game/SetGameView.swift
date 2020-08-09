@@ -47,9 +47,9 @@ struct SetGameView: View {
                     .animation(.easeInOut(duration: self.transitionDuration))
                 }
                 Button(action: {
-                    self.viewModel.deal3MoreCards()
+                    self.viewModel.dealMoreCards()
                 }, label: {
-                    Text("Deal 3 More Cards")
+                    Text("Deal \(self.viewModel.numberOfCardsToDeal) More Cards")
                 })
                     .disabled(viewModel.isDeckEmpty)
                     .padding()
