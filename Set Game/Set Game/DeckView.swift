@@ -18,8 +18,9 @@ struct DeckView: View {
 
     private let cornerRadius: CGFloat = 10.0
     private let edgeLineWidth: CGFloat = 4.0
-    private let emptyOpacity: Double = 0.5
+    private let outlineColor: Color = .gray
     private let emptyTextSize: CGFloat = 15.0
+    private let emptyOpacity: Double = 0.5
 
     // MARK: - Body
 
@@ -29,7 +30,7 @@ struct DeckView: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: cornerRadius)
                         .stroke(lineWidth: edgeLineWidth)
-                        .foregroundColor(.gray)
+                        .foregroundColor(outlineColor)
                     Text("Empty")
                         .font(.system(size: emptyTextSize))
                 }

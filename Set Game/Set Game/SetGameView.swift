@@ -60,11 +60,11 @@ struct SetGameView: View {
                 CardView(card: card)
                     .aspectRatio(self.cardAspectRatio, contentMode: .fit)
                     .padding(self.cardPadding)
+                    .transition(.offset(self.offset))
+                    .animation(.easeInOut(duration: self.transitionDuration))
                     .onTapGesture {
                         self.viewModel.select(card)
-                }
-                .transition(.offset(self.offset))
-                .animation(.easeInOut(duration: self.transitionDuration))
+                    }
             }
         }
             .onAppear() {

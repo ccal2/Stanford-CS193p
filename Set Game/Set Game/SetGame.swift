@@ -18,13 +18,7 @@ struct SetGame {
     // MARK: Control
 
     private var selectedCards: [Card] {
-        var cards: [Card] = []
-
-        for card in dealtCards where card.isSelected {
-            cards.append(card)
-        }
-
-        return cards
+        dealtCards.filter { $0.isSelected }
     }
 
     private var selectedCardsIndeces: [Int] {

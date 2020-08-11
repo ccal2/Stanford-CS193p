@@ -20,11 +20,12 @@ struct CardView: View {
     private let edgeLineWidth: CGFloat = 4.0
     private let shapeAspectRatio: CGFloat = 2.0
     private let frameMultiplier: CGFloat = 0.75
+    private let backColor: Color = .gray
 
-    private let borderColor: (SetGame.Card) -> Color = { card in
+    private var borderColor: Color {
         switch card.state {
         case .unselected:
-            return .gray
+            return backColor
         case .selected:
             return .blue
         case .matched:
@@ -34,7 +35,7 @@ struct CardView: View {
         }
     }
 
-    private let cardColor: (SetGame.Card) -> Color = { card in
+    private var contentColor: Color {
         switch card.color {
         case .red:
             return .red
@@ -60,17 +61,17 @@ struct CardView: View {
                     .fill(Color.white)
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(lineWidth: edgeLineWidth)
-                    .foregroundColor(borderColor(card))
+                    .foregroundColor(borderColor)
                 VStack {
                     ForEach (0 ..< card.quantity.rawValue) { _ in
                         self.cardShape()
                     }
                 }
-                .frame(width: size.width * frameMultiplier, height: size.height * frameMultiplier, alignment: .center)
-                .foregroundColor(cardColor(card))
+                    .frame(width: size.width * frameMultiplier, height: size.height * frameMultiplier, alignment: .center)
+                    .foregroundColor(contentColor)
             } else {
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .fill(Color.gray)
+                    .fill(backColor)
             }
         }
     }
