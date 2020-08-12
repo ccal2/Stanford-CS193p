@@ -42,29 +42,25 @@ struct SetGame {
 
     // MARK: - Methods
 
-    // MARK: Game logic
+    // MARK: Intents
 
     mutating func startNewGame() {
         deck = Card.createDeck().shuffled()
-
-        var cards = deck.deal(numberOfCards: initialNumberOfCards)
-        for index in cards.indices {
-            cards[index].isFaceUp = true
-        }
-
-        dealtCards = cards
+        dealtCards = deck.deal(numberOfCards: initialNumberOfCards)
     }
 
     mutating func dealMoreCards() {
         removeMatchedCards()
-
-        var cards = deck.deal(numberOfCards: numberOfCardsToDeal)
-        for index in cards.indices {
-            cards[index].isFaceUp = true
-        }
-
-        dealtCards += cards
+        dealtCards += deck.deal(numberOfCards: numberOfCardsToDeal)
     }
+
+    mutating func faceUp(card: Card) {
+        guard let index = dealtCards.firstIndex(matching: card) else { return }
+
+        dealtCards[index].isFaceUp = true
+    }
+
+    // MARK: Game logic
 
     mutating func select(_ card: Card) {
         handleLastMatchTest()

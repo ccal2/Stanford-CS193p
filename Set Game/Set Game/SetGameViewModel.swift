@@ -52,4 +52,8 @@ class SetGameViewModel: ObservableObject {
         game.startNewGame()
     }
 
+    func faceUp(card: SetGame.Card) {
+        game.faceUp(card: card)
+    }
+
 }

@@ -20,7 +20,7 @@ struct SetGameView: View {
     private let cardPadding: CGFloat = 5.0
     private let deckPadding: CGFloat = 20.0
     private let deckHeight: CGFloat = 130
-    private let animationDuration: Double = 0.5
+    private let animationDuration: Double = 1
 
     // MARK: State
 
@@ -69,11 +69,6 @@ struct SetGameView: View {
                     CardView(card: card)
                         .offset(self.offsets[card.id] ?? .zero)
                         .scaleEffect(self.scales[card.id] ?? 1.0, anchor: .topLeading)
-                        .onTapGesture {
-                            withAnimation(.easeInOut) {
-                                self.viewModel.select(card)
-                            }
-                        }
                         .onAppear() {
                             let frame = geometry.frame(in: .global)
                             let height = frame.maxY - frame.minY
@@ -81,8 +76,14 @@ struct SetGameView: View {
                             self.scales[card.id] = scale
                             self.offsets[card.id] = CGSize(width: -abs(frame.minX - self.deckPosition.x)/scale, height: -abs(frame.minY - self.deckPosition.y)/scale)
                             withAnimation(.easeInOut) {
+                                self.viewModel.faceUp(card: card)
                                 self.offsets[card.id] = .zero
                                 self.scales[card.id] = 1.0
+                            }
+                        }
+                        .onTapGesture {
+                            withAnimation(.easeInOut) {
+                                self.viewModel.select(card)
                             }
                         }
                 }

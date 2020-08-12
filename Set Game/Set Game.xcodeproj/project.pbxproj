@@ -22,6 +22,7 @@
 		2360EA5624DCAFD00092389E /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360EA5424DCAFD00092389E /* GridLayout.swift */; };
 		2360EA5A24DCB0290092389E /* Array+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360EA5924DCB0290092389E /* Array+Identifiable.swift */; };
 		23AF972024DCA5230059FFEC /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AF971F24DCA5230059FFEC /* Diamond.swift */; };
+		23E5CBF824E45FBF00948D17 /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E5CBF724E45FBF00948D17 /* Cardify.swift */; };
 		779AB20524E0A91200AB28D6 /* DeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779AB20424E0A91200AB28D6 /* DeckView.swift */; };
 		77C2444C24DF867A0004C9A0 /* SetGame+Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2444B24DF867A0004C9A0 /* SetGame+Card.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		2360EA5424DCAFD00092389E /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		2360EA5924DCB0290092389E /* Array+Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Identifiable.swift"; sourceTree = "<group>"; };
 		23AF971F24DCA5230059FFEC /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
+		23E5CBF724E45FBF00948D17 /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
 		779AB20424E0A91200AB28D6 /* DeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckView.swift; sourceTree = "<group>"; };
 		77C2444B24DF867A0004C9A0 /* SetGame+Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetGame+Card.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +93,7 @@
 				2340F84324CF60B700E4828B /* SetGameView.swift */,
 				2340F87C24CF6BFA00E4828B /* CardView.swift */,
 				779AB20424E0A91200AB28D6 /* DeckView.swift */,
+				23E5CBF724E45FBF00948D17 /* Cardify.swift */,
 				23AF971F24DCA5230059FFEC /* Diamond.swift */,
 				2340F84524CF60BA00E4828B /* Assets.xcassets */,
 				2340F84A24CF60BA00E4828B /* LaunchScreen.storyboard */,
@@ -182,6 +185,7 @@
 				2340F87F24CF718B00E4828B /* Array+Deal.swift in Sources */,
 				77C2444C24DF867A0004C9A0 /* SetGame+Card.swift in Sources */,
 				2340F84024CF60B700E4828B /* AppDelegate.swift in Sources */,
+				23E5CBF824E45FBF00948D17 /* Cardify.swift in Sources */,
 				779AB20524E0A91200AB28D6 /* DeckView.swift in Sources */,
 				2340F84224CF60B700E4828B /* SceneDelegate.swift in Sources */,
 				2360EA5524DCAFD00092389E /* Grid.swift in Sources */,
