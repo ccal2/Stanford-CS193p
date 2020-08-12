@@ -18,13 +18,15 @@ struct SetGameView: View {
 
     private let cardAspectRatio: CGFloat = 2/3
     private let cardPadding: CGFloat = 5.0
-    private let transitionDuration: Double = 0.5
     private let deckPadding: CGFloat = 20.0
     private let deckHeight: CGFloat = 130
+    private let animationDuration: Double = 0.5
 
-    private var offset: CGSize {
-        CGSize(width: CGFloat.random(in: -1000...1000), height: CGFloat.random(in: -1000...1000))
-    }
+    // MARK: State
+
+    @State private var deckPosition: (x: CGFloat, y: CGFloat) = (.zero, .zero)
+    @State private var offsets: [String: CGSize] = [:]
+    @State private var scales: [String: CGFloat] = [:]
 
     // MARK: - Body
 
@@ -47,24 +49,46 @@ struct SetGameView: View {
                 Spacer()
             }
             HStack {
-                DeckView(viewModel: viewModel)
-                    .aspectRatio(cardAspectRatio, contentMode: .fit)
-                    .frame(width: nil, height: deckHeight)
-                    .padding(.leading, deckPadding)
-                    .onTapGesture {
-                        self.viewModel.dealMoreCards()
-                    }
+                GeometryReader { geometry in
+                    DeckView(viewModel: self.viewModel)
+                        .onTapGesture {
+                            self.viewModel.dealMoreCards()
+                        }
+                        .onAppear() {
+                            let frame = geometry.frame(in: .global)
+                            self.deckPosition = (x: frame.minX, y: frame.minY)
+                        }
+                }
+                    .aspectRatio(self.cardAspectRatio, contentMode: .fit)
+                    .padding(.leading, self.deckPadding)
                 Spacer()
             }
+                .frame(width: nil, height: deckHeight)
             Grid(viewModel.cards) { card in
-                CardView(card: card)
+                GeometryReader { geometry in
+                    CardView(card: card)
+                        .offset(self.offsets[card.id] ?? .zero)
+                        .scaleEffect(self.scales[card.id] ?? 1.0, anchor: .topLeading)
+                        .onTapGesture {
+                            withAnimation(.easeInOut) {
+                                self.viewModel.select(card)
+                            }
+                        }
+                        .onAppear() {
+                            let frame = geometry.frame(in: .global)
+                            let height = frame.maxY - frame.minY
+                            let scale = self.deckHeight/height
+                            self.scales[card.id] = scale
+                            self.offsets[card.id] = CGSize(width: -abs(frame.minX - self.deckPosition.x)/scale, height: -abs(frame.minY - self.deckPosition.y)/scale)
+                            withAnimation(.easeInOut) {
+                                self.offsets[card.id] = .zero
+                                self.scales[card.id] = 1.0
+                            }
+                        }
+                }
                     .aspectRatio(self.cardAspectRatio, contentMode: .fit)
                     .padding(self.cardPadding)
-                    .transition(.offset(self.offset))
-                    .animation(.easeInOut(duration: self.transitionDuration))
-                    .onTapGesture {
-                        self.viewModel.select(card)
-                    }
+                    .animation(.easeInOut(duration: self.animationDuration))
             }
         }
             .onAppear() {
