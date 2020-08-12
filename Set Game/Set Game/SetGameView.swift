@@ -50,7 +50,7 @@ struct SetGameView: View {
             }
             HStack {
                 GeometryReader { geometry in
-                    DeckView(viewModel: self.viewModel)
+                    DeckView(deck: self.viewModel.deck)
                         .onTapGesture {
                             self.viewModel.dealMoreCards()
                         }

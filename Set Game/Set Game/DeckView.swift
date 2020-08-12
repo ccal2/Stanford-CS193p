@@ -12,7 +12,7 @@ struct DeckView: View {
 
     // MARK: - Properties
     
-    @ObservedObject var viewModel: SetGameViewModel
+    let deck: [SetGame.Card]
 
     // MARK: Drawing Constants
 
@@ -26,7 +26,7 @@ struct DeckView: View {
 
     var body: some View {
         Group {
-            if viewModel.deck.isEmpty {
+            if deck.isEmpty {
                 ZStack {
                     RoundedRectangle(cornerRadius: cornerRadius)
                         .stroke(lineWidth: edgeLineWidth)
@@ -36,7 +36,7 @@ struct DeckView: View {
                 }
                     .opacity(emptyOpacity)
             } else {
-                CardView(card: viewModel.deck.first!)
+                CardView(card: deck.first!)
             }
         }
     }
