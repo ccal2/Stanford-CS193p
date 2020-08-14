@@ -6,6 +6,8 @@
 //  Copyright © 2020 Carolina Lopes. All rights reserved.
 //
 
+import Foundation
+
 struct SetGame {
 
     // MARK: - Properties
@@ -15,7 +17,11 @@ struct SetGame {
     private(set) var deck: [Card] = []
     private(set) var dealtCards: [Card] = []
 
-    // MARK: Control
+    // MARK: Score
+
+    private(set) var score: Int = 0
+
+    // MARK: Card selection control
 
     private var selectedCards: [Card] {
         dealtCards.filter { $0.isSelected }
@@ -31,6 +37,11 @@ struct SetGame {
         return indeces
     }
 
+    // MARK: Bonus control
+
+    private let bonusTimeLimit: TimeInterval = 20.0
+    private var searchingInitialDate: Date!
+
     // MARK: Constants
 
     let numberOfCardsToDeal: Int = 3
@@ -45,6 +56,7 @@ struct SetGame {
     // MARK: Game logic
 
     mutating func startNewGame() {
+        score = 0
         deck = Card.createDeck().shuffled()
 
         var cards = deck.deal(numberOfCards: initialNumberOfCards)
@@ -53,6 +65,7 @@ struct SetGame {
         }
 
         dealtCards = cards
+        searchingInitialDate = Date()
     }
 
     mutating func dealMoreCards() {
@@ -97,10 +110,15 @@ struct SetGame {
                 for index in indeces {
                     dealtCards[index].isMatched = true
                 }
+                let searchingDuration = Date().timeIntervalSince(searchingInitialDate)
+                let bonus = Int(bonusTimeLimit - searchingDuration) * 4
+                searchingInitialDate = Date()
+                score += 100 + max(0, bonus)
             } else {
                 for index in indeces {
                     dealtCards[index].isMatched = false
                 }
+                score -= 30
             }
         }
     }

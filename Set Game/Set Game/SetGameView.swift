@@ -41,8 +41,9 @@ struct SetGameView: View {
                 })
                     .padding(.trailing)
             }
-            Text("Set")
-                .font(.system(.largeTitle))
+                .padding(.bottom)
+            Text("Score: \(viewModel.score)")
+                .font(.system(.title))
                 .bold()
             HStack {
                 GeometryReader { geometry in

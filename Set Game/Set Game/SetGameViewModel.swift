@@ -22,6 +22,10 @@ class SetGameViewModel: ObservableObject {
         game.dealtCards
     }
 
+    var score: Int {
+        game.score
+    }
+
     var numberOfCardsToDeal: Int {
         game.numberOfCardsToDeal
     }
