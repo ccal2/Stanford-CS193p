@@ -30,6 +30,10 @@ class SetGameViewModel: ObservableObject {
         game.numberOfCardsToDeal
     }
 
+    var hasHint: Bool {
+        game.hasSet
+    }
+
     // MARK: Model
 
     @Published private var game: SetGame
@@ -54,6 +58,10 @@ class SetGameViewModel: ObservableObject {
 
     func startNewGame() {
         game.startNewGame()
+    }
+
+    func giveHint() {
+        game.giveHint()
     }
 
 }

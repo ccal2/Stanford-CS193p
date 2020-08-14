@@ -92,6 +92,7 @@ extension SetGame.Card {
     
     enum State {
         case unselected
+        case suggested
         case selected
         case matched
         case unmatched

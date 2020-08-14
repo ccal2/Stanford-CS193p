@@ -33,6 +33,13 @@ struct SetGameView: View {
     var body: some View {
         VStack {
             HStack {
+                Button(action: {
+                    self.viewModel.giveHint()
+                }, label: {
+                    Text("Hint")
+                })
+                    .disabled(!viewModel.hasHint)
+                    .padding(.leading)
                 Spacer()
                 Button(action: {
                     self.viewModel.startNewGame()

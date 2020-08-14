@@ -26,6 +26,8 @@ struct CardView: View {
         switch card.state {
         case .unselected:
             return backColor
+        case .suggested:
+            return .orange
         case .selected:
             return .blue
         case .matched:

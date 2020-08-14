@@ -42,6 +42,24 @@ struct SetGame {
     private let bonusTimeLimit: TimeInterval = 20.0
     private var searchingInitialDate: Date!
 
+    // MARK: Hint control
+
+    var hasSet: Bool {
+        if case .set = isSetAvaliable() {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    private var hintIndexes: [Int] {
+        if case let .set(index1, index2, index3) = isSetAvaliable() {
+            return [index1, index2, index3]
+        } else {
+            return []
+        }
+    }
+
     // MARK: Constants
 
     let numberOfCardsToDeal: Int = 3
@@ -69,7 +87,7 @@ struct SetGame {
     }
 
     mutating func dealMoreCards() {
-        if isSetAvaliable() {
+        if hasSet {
             score -= 50
         }
 
@@ -90,6 +108,12 @@ struct SetGame {
 
         dealtCards[selectedCardIndex].isSelected.toggle()
         performMatchTest()
+    }
+
+    mutating func giveHint() {
+        for index in hintIndexes {
+            dealtCards[index].state = .suggested
+        }
     }
 
     private mutating func handleLastMatchTest() {
@@ -131,21 +155,21 @@ struct SetGame {
         dealtCards = dealtCards.filter { !$0.isMatched }
     }
 
-    private func isSetAvaliable() -> Bool {
+    private func isSetAvaliable() -> AvailableSet {
         let count = dealtCards.count
+        guard count >= 3 else { return .none }
 
-        for i in 0 ..< count - 3 {
-            for j in i+1 ..< count - 2 {
-                for k in j+1 ..< count - 1 {
+        for i in 0 ..< count - 3 where !dealtCards[i].isMatched {
+            for j in i+1 ..< count - 2 where !dealtCards[j].isMatched {
+                for k in j+1 ..< count - 1 where !dealtCards[k].isMatched {
                     if SetGame.isSet([dealtCards[i], dealtCards[j], dealtCards[k]]) {
-                        print("Set: (\(i), \(j), \(k))")
-                        return true
+                        return .set(i, j, k)
                     }
                 }
             }
         }
 
-        return false
+        return .none
     }
 
     // MARK: - Static Methods
@@ -194,6 +218,15 @@ extension SetGame {
         case red
         case green
         case purple
+    }
+
+}
+
+extension SetGame {
+
+    private enum AvailableSet {
+        case none
+        case set(Int, Int, Int)
     }
 
 }
