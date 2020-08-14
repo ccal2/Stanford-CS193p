@@ -41,13 +41,9 @@ struct SetGameView: View {
                 })
                     .padding(.trailing)
             }
-            HStack {
-                Spacer()
-                Text("Set")
-                    .font(.system(.largeTitle))
-                    .bold()
-                Spacer()
-            }
+            Text("Set")
+                .font(.system(.largeTitle))
+                .bold()
             HStack {
                 GeometryReader { geometry in
                     DeckView(deck: self.viewModel.deck)
