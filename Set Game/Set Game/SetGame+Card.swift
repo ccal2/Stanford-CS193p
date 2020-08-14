@@ -82,6 +82,10 @@ extension SetGame.Card: Identifiable {
 
 }
 
+// MARK: - Equatable
+
+extension SetGame.Card: Equatable { }
+
 // MARK: - State
 
 extension SetGame.Card {

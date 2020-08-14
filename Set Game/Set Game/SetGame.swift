@@ -69,6 +69,10 @@ struct SetGame {
     }
 
     mutating func dealMoreCards() {
+        if isSetAvaliable() {
+            score -= 50
+        }
+
         removeMatchedCards()
 
         var cards = deck.deal(numberOfCards: numberOfCardsToDeal)
@@ -127,10 +131,28 @@ struct SetGame {
         dealtCards = dealtCards.filter { !$0.isMatched }
     }
 
+    private func isSetAvaliable() -> Bool {
+        let count = dealtCards.count
+
+        for i in 0 ..< count - 3 {
+            for j in i+1 ..< count - 2 {
+                for k in j+1 ..< count - 1 {
+                    if SetGame.isSet([dealtCards[i], dealtCards[j], dealtCards[k]]) {
+                        print("Set: (\(i), \(j), \(k))")
+                        return true
+                    }
+                }
+            }
+        }
+
+        return false
+    }
+
     // MARK: - Static Methods
 
     static func isSet(_ cards: [Card]) -> Bool {
         guard cards.count == numberOfCardsInASet else { return false }
+        guard cards[0] != cards[1], cards[0] != cards[2], cards[1] != cards[2] else { return false }
 
         let shapes = cards.map { $0.shape }
         let quantities = cards.map { $0.quantity }
