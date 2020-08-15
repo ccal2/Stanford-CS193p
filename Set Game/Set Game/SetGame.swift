@@ -89,11 +89,13 @@ struct SetGame {
     }
 
     mutating func dealMoreCards() {
-        if hasSet {
-            score -= 50
-        }
+        guard !deck.isEmpty else { return }
 
         removeMatchedCards()
+
+        if dealtCards.count >= initialNumberOfCards && hasSet {
+            score -= 50
+        }
 
         var cards = deck.deal(numberOfCards: numberOfCardsToDeal)
         for index in cards.indices {
