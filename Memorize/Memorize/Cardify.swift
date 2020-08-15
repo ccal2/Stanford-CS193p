@@ -46,10 +46,10 @@ struct Cardify: AnimatableModifier {
         ZStack {
             Group {
                 RoundedRectangle(cornerRadius: cornerRadius)
-                .fill(Color.white)
-            RoundedRectangle(cornerRadius: cornerRadius)
-                .stroke(lineWidth: edgeLineWidth)
-            content
+                    .fill(Color.white)
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(lineWidth: edgeLineWidth)
+                content
             }
                 .opacity(isFaceUp ? 1 : 0)
             RoundedRectangle(cornerRadius: cornerRadius)
