@@ -32,6 +32,7 @@ struct SetGameView: View {
 
     var body: some View {
         VStack {
+
             HStack {
                 Button(action: {
                     self.viewModel.giveHint()
@@ -39,19 +40,19 @@ struct SetGameView: View {
                     Text("Hint")
                 })
                     .disabled(!viewModel.hasHint)
-                    .padding(.leading)
                 Spacer()
                 Button(action: {
                     self.viewModel.startNewGame()
                 }, label: {
                     Text("New Game")
                 })
-                    .padding(.trailing)
             }
-                .padding(.bottom)
+                .padding()
+
             Text("Score: \(viewModel.score)")
                 .font(.system(.title))
                 .bold()
+
             HStack {
                 GeometryReader { geometry in
                     DeckView(deck: self.viewModel.deck)
@@ -68,6 +69,7 @@ struct SetGameView: View {
                 Spacer()
             }
                 .frame(width: nil, height: deckHeight)
+
             Grid(viewModel.cards) { card in
                 GeometryReader { geometry in
                     CardView(card: card)
@@ -94,6 +96,8 @@ struct SetGameView: View {
                     .padding(self.cardPadding)
                     .animation(.easeInOut(duration: self.animationDuration))
             }
+                .padding()
+
         }
             .onAppear() {
                 self.viewModel.startNewGame()
