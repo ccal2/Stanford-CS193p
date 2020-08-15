@@ -84,7 +84,13 @@ extension SetGame.Card: Identifiable {
 
 // MARK: - Equatable
 
-extension SetGame.Card: Equatable { }
+extension SetGame.Card: Equatable {
+
+    static func == (lhs: SetGame.Card, rhs: SetGame.Card) -> Bool {
+        lhs.id == rhs.id
+    }
+
+}
 
 // MARK: - State
 

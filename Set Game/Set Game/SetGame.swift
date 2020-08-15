@@ -60,6 +60,8 @@ struct SetGame {
         }
     }
 
+    private var lastHint: [Card] = []
+
     // MARK: Constants
 
     let numberOfCardsToDeal: Int = 3
@@ -111,8 +113,10 @@ struct SetGame {
     }
 
     mutating func giveHint() {
+        lastHint = []
         for index in hintIndexes {
             dealtCards[index].state = .suggested
+            lastHint.append(dealtCards[index])
         }
     }
 
@@ -132,21 +136,29 @@ struct SetGame {
     }
 
     private mutating func performMatchTest() {
-        if selectedCards.count == SetGame.numberOfCardsInASet {
-            let indeces = selectedCardsIndeces
-            if SetGame.isSet(selectedCards) {
-                for index in indeces {
-                    dealtCards[index].isMatched = true
-                }
-                let searchingDuration = Date().timeIntervalSince(searchingInitialDate)
-                let bonus = Int(bonusTimeLimit - searchingDuration) * 4
-                searchingInitialDate = Date()
-                score += 100 + max(0, bonus)
+        guard selectedCards.count == SetGame.numberOfCardsInASet else { return }
+
+        let indeces = selectedCardsIndeces
+
+        if SetGame.isSet(selectedCards) {
+            let searchingDuration = Date().timeIntervalSince(searchingInitialDate)
+            searchingInitialDate = Date()
+
+            if selectedCards == lastHint { // used hint
+                score += 50
             } else {
-                for index in indeces {
-                    dealtCards[index].isMatched = false
-                }
-                score -= 30
+                let timeBonus = max(0, Int(bonusTimeLimit - searchingDuration) * 4)
+                score += 100 + timeBonus
+            }
+
+            for index in indeces {
+                dealtCards[index].isMatched = true
+            }
+        } else {
+            score -= 30
+
+            for index in indeces {
+                dealtCards[index].isMatched = false
             }
         }
     }
